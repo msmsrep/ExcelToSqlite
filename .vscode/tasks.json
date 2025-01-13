@@ -1,0 +1,51 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "appExcel",
+            // エクセルのbitに合わせてパスは変える
+            "command": "C:/Program Files/Microsoft Office/root/Office16/EXCEL.EXE",
+            "type": "process",
+            "args": ["${workspaceFolder}/bin/Debug/net8.0-windows/publish/ExcelToSqlite-AddIn64-packed.xll",
+                        "${workspaceFolder}/bin/Debug/net8.0-windows/publish/debug.xlsm"],
+            "problemMatcher": [],
+            "dependsOn": "build",
+        },
+        {
+            "label": "build",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/ExcelToSqlite.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary;ForceNoAlign"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "publish",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "publish",
+                "${workspaceFolder}/ExcelToSqlite.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary;ForceNoAlign"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "watch",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "watch",
+                "run",
+                "--project",
+                "${workspaceFolder}/ExcelToSqlite.csproj"
+            ],
+            "problemMatcher": "$msCompile"
+        }
+    ]
+}
